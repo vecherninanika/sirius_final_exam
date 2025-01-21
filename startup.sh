@@ -24,12 +24,16 @@ sudo apt install docker-compose -y
 sudo usermod -aG docker $USER
 newgrp docker
 
+echo "Pulling prometheus..."
+docker pull prom/prometheus
+
 echo "Installing git..."
 sudo apt install git -y
 
 echo "Installing Poetry..."
 curl -sSL https://install.python-poetry.org | python3 -
 poetry --version
+
 
 # Установка VSCode (с автоматическим скачиванием и установкой)
 echo "Installing VSCode..."

@@ -1,2 +1,0 @@
-docker pull prom/prometheus
-pip install prometheus-fastapi-instrumentator
