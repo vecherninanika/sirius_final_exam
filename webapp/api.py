@@ -4,8 +4,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 from sqlalchemy import select, update, delete
 
-from webapp.postgres import get_session
-from webapp.models.sirius.ingredient import Ingredient
+# from webapp.postgres import get_session
+# from webapp.models.sirius.ingredient import Ingredient
 
 
 ingredient_router = APIRouter(prefix='/ingredient')
@@ -14,16 +14,17 @@ ingredient_router = APIRouter(prefix='/ingredient')
 @ingredient_router.get('/read')
 async def read_ingredient(
     body,
-    session = Depends(get_session),
+    # session = Depends(get_session),
 ) -> ORJSONResponse:
-    ingredient = (await session.scalars(select(Ingredient).where(Ingredient.title == body.title))).one_or_none()
+    return {"hello": "hello"}
+    # ingredient = (await session.scalars(select(Ingredient).where(Ingredient.title == body.title))).one_or_none()
 
-    if ingredient is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Ingredient "{body.title}" does not exist')
+    # if ingredient is None:
+    #     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Ingredient "{body.title}" does not exist')
 
-    return ORJSONResponse({'id': ingredient.id, 'title': ingredient.title})
+    # return ORJSONResponse({'id': ingredient.id, 'title': ingredient.title})
 
-
+"""
 @ingredient_router.post('/create')
 async def create_ingredient(body, session = Depends(get_session)) -> ORJSONResponse:
 
@@ -64,3 +65,4 @@ async def delete_ingredient(ingredient_id: int, session: AsyncSession = Depends(
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f'Ingredient does not exist')
 
     return ORJSONResponse({'id': deleted_id})
+"""

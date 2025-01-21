@@ -6,6 +6,7 @@ from typing import List
 
 from sqlalchemy import insert
 
+"""
 from webapp.db.postgres import async_session
 from webapp.models.meta import metadata
 
@@ -31,3 +32,4 @@ async def main(fixtures: List[str]) -> None:
 
 if __name__ == '__main__':
     asyncio.run(main(args.fixtures))
+"""

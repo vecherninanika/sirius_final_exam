@@ -45,22 +45,22 @@ services:
     networks:
       - sirius_network
 
-  balancer:
-    container_name: balancer
-    image: nginx:1.27.2-alpine3.20
-    restart: unless-stopped
-    ports:
-      - 80:80
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:80"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-    volumes:
-      - ./nginx:/etc/nginx/templates
-    depends_on:
-      - web
+  # balancer:
+  #   container_name: balancer
+  #   image: nginx:1.27.2-alpine3.20
+  #   restart: unless-stopped
+  #   ports:
+  #     - 80:80
+  #   healthcheck:
+  #     test: ["CMD", "curl", "-f", "http://localhost:80"]
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     start_period: 40s
+  #   volumes:
+  #     - ./nginx:/etc/nginx/templates
+  #   depends_on:
+  #     - web
 
   prometheus:
     image: prom/prometheus

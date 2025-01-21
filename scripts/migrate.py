@@ -3,6 +3,7 @@ import logging
 
 from sqlalchemy.exc import IntegrityError
 
+"""
 from webapp.db.postgres import engine
 from webapp.models import meta
 
@@ -17,3 +18,4 @@ async def main() -> None:
 
 if __name__ == '__main__':
     asyncio.run(main())
+"""

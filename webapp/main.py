@@ -1,16 +1,15 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from prometheus_fastapi_instrumentator import Instrumentator
 
 from webapp.api import ingredient_router
 from webapp.metrics import metrics
 from webapp.logger import LogServerMiddleware
-from webapp.metrics import MeasureLatencyMiddleware
+from webapp.metrics import MetricsMiddleware
 
 
 def setup_middleware(app: FastAPI) -> None:
+    app.add_middleware(MetricsMiddleware)
     app.add_middleware(LogServerMiddleware)
-    app.add_middleware(MeasureLatencyMiddleware)
 
     # CORS Middleware should be the last.
     # See https://github.com/tiangolo/fastapi/issues/1663 .
@@ -34,7 +33,6 @@ def create_app() -> FastAPI:
 
     setup_middleware(app)
     setup_routers(app)
-    Instrumentator().instrument(app).expose(app)
 
     return app
 

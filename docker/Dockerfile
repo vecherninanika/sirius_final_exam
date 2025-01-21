@@ -18,19 +18,16 @@ COPY pyproject.toml /code/
 RUN poetry config virtualenvs.create false \
     && poetry install --no-interaction --no-ansi --without dev \
     && echo yes | poetry cache clear . --all
-#
+
+
 ## stand image
 #FROM base AS prod
-#
 #COPY . .
-#
 #RUN mkdir -p /var/log && chmod -R 1777 /var/log
-#
 #USER 1001
+
 
 # tests image
 FROM base AS test
-
 RUN poetry install --no-interaction --no-ansi --with dev
-
 USER 1001
